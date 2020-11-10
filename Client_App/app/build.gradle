@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+
+android {
+    dataBinding.enabled = true
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "com.android.learningassistant"
+        minSdkVersion 21
+        targetSdkVersion 25
+        multiDexEnabled true
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+}
+
+repositories {
+    // ...
+    maven {
+        url 'https://maven.fabric.io/public'
+    }
+
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile project(':chat')
+    compile project(':attendance')
+    compile project(':library')
+    compile project(':uncover')
+    compile project(':algorithm')
+    compile project(':jobs')
+    compile project(':events')
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.firebaseui:firebase-ui-auth:3.0.0'
+    compile 'com.google.firebase:firebase-auth:11.4.2'
+    compile 'com.android.support:support-compat:26.1.0'
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'com.github.jrvansuita:MaterialAbout:+'
+    compile 'org.sufficientlysecure:donations:2.5'
+
+
+    testCompile 'junit:junit:4.12'
+}
+apply plugin: 'com.google.gms.google-services'
